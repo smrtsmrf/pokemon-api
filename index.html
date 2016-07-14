@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="apiApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokedex</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-controller="apiCtrl">
+	<header id="header" class="">
+		<!-- <h1 ng-show="shown">All the Pokemon</h1> -->
+		<!-- <h1 id="name" ng-show="!shown">{{ pokemonInfo.name }}</h1> -->
+		
+		<form ng-show="shown" class="navbar-form navbar-left" role="search">
+           	<div class="form-group">
+				<select class="input-medium form-control" ng-model="sortProp">
+		                  <option value="" selected="">Name</option>
+		                  <option value="#" selected="">ID</option>
+		             </select>
+		             <input type="text" class="form-control" ng-model='filterOptions.filterText' placeholder="Search for..."/>
+          		</div>
+          </form>
+
+	</header><!-- /header -->
+
+	<div class= 'inline' ng-repeat="gridOpts in gridOptions" ng-show="shown">
+		<div class="gridStyle" ng-grid="gridOpts" swap-image="defaultInfo.search">
+		
+		</div>
+	</div>
+
+	<!-- <h1 id='loading'>Loading <i class="fa fa-spin fa-spinner"></i></h1> -->
+
+	<div ng-show="!shown" id="info" >
+		<h1 id="name" ng-show="!shown">{{ pokemonInfo.name }}</h1>
+		<div class="pics" style="background: url({{pokemonInfo.sprites.front_default}}); background-repeat: no-repeat">
+		</div>
+		<!-- <div class="pics" back-img="{{pokemonInfo.sprites.front_default}})">
+		</div> -->
+		<!-- <img class="pics" ng-src="{{ pokemonInfo.sprites.front_default }}" alt="">  -->
+		<div id="data">
+			ID: {{ pokemonInfo.id }} <br>
+			Type: {{ pokemonInfo.types[0].type.name }} {{ pokemonInfo.types[1].type.name }} <br>
+			Base Exp: {{ pokemonInfo.base_experience }} <br>
+			Ability 1: {{ pokemonInfo.abilities[0].ability.name }} <br>
+			Ability 2: {{ pokemonInfo.abilities[1].ability.name }} <br>
+			Move 1: {{ pokemonInfo.moves[0].move.name }} <br>
+			Move 2: {{ pokemonInfo.moves[1].move.name }} <br>
+			<h3><strong>Stats:</strong></h3>
+			{{ pokemonInfo.stats[5].stat.name }}: {{ pokemonInfo.stats[5].base_stat }} <br>
+			{{ pokemonInfo.stats[4].stat.name }}: {{ pokemonInfo.stats[4].base_stat }} <br>
+			{{ pokemonInfo.stats[3].stat.name }}: {{ pokemonInfo.stats[3].base_stat }} <br>
+			{{ pokemonInfo.stats[2].stat.name }}: {{ pokemonInfo.stats[2].base_stat }} <br>
+			{{ pokemonInfo.stats[1].stat.name }}: {{ pokemonInfo.stats[1].base_stat }} <br>
+			{{ pokemonInfo.stats[0].stat.name }}: {{ pokemonInfo.stats[0].base_stat }} <br>
+			<br>
+			<br>
+			<button id="back" ng-click="shown = !shown">Back to All Pokemon</button>
+		</div>
+
+		
+	</div>
+	
+
+
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+	<script src="app.js"></script>
+	<script src="directive.js"></script>
+	<script src="controller.js"></script>
+	<script src="service.js"></script>
+</body>
+</html>
