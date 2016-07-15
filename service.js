@@ -6,7 +6,7 @@ angular.module('apiApp').service('apiSvc', ['$http','$q', function ($http, $q) {
 		var defer = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://pokeapi.co/api/v2/pokemon/?' + limit + stroffset
+			url: 'https://pokeapi.co/api/v2/pokemon/?' + limit + stroffset
 		}).then(function (response) {
 			var results = response.data.results;
 			for (var i = 0; i < results.length; i++) {
